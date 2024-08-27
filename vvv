@@ -1,0 +1,35 @@
+//color change
+private Button bckBtn;
+ private Button txtBtn;
+ private TextView result;
+ private View windowView;
+ private int[] colors;
+ @Override
+ protected void onCreate(Bundle savedInstanceState) {
+ super.onCreate(savedInstanceState);
+ setContentView(R.layout.activity_main);
+ colors = new int[]{Color.RED, Color.YELLOW, Color.GRAY, 
+Color.MAGENTA, Color.BLACK, Color.BLUE, Color.TRANSPARENT, Color.DKGRAY};
+ windowView = findViewById(R.id.bckViewId);
+ bckBtn = (Button) findViewById(R.id.bckBtnId);
+ txtBtn = (Button) findViewById(R.id.txtBtnId);
+ result = (TextView) findViewById(R.id.textId);
+ bckBtn.setOnClickListener(new View.OnClickListener() {
+ @Override
+ public void onClick(View view) {
+ Random random = new Random();
+ int ranNum = random.nextInt(colors.length);
+ windowView.setBackgroundColor(colors[ranNum]);
+ }
+ });
+ txtBtn.setOnClickListener(new View.OnClickListener() {
+ @Override
+ public void onClick(View view) {
+ Random randomTxt = new Random();
+ int ranTxtColor = randomTxt.nextInt(colors.length);
+ result.setTextColor(colors[ranTxtColor]);
+ }
+ });
+ }
+
+//
