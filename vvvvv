@@ -92,3 +92,34 @@ TextView usernameView, addressView;
                 });
     }
 }
+
+
+
+
+//usd lkr
+ amount = (EditText) findViewById(R.id.amountId);
+        usdbtn =(RadioButton) findViewById(R.id.usdBtnId);
+        lkrBtn =(RadioButton) findViewById(R.id.lkrBtnId);
+        value = (TextView) findViewById(R.id.valueId);
+        convertBtn = (Button) findViewById(R.id.convertBtnId);
+
+        ;
+
+        convertBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                double num = Double.parseDouble(amount.getText().toString());
+
+                if (usdbtn.isChecked()){
+                    double output = num * 324;
+                    value.setText(output + " lkr");
+                } else if (lkrBtn.isChecked()) {
+                    double output = num / 324;
+                    value.setText(output + " usd");
+                }else {
+                    value.setText("not valid");
+                }
+            }
+        });
+    }
+}
