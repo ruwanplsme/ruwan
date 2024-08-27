@@ -1,0 +1,94 @@
+//firebase .intent
+//main1
+  EditText name;
+    EditText address;
+    Button button;
+
+    FirebaseFirestore db = FirebaseFirestore.getInstance();
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+
+        name = (EditText) findViewById(R.id.nameId);
+        address = (EditText) findViewById(R.id.addId);
+        button = (Button) findViewById(R.id.btnId);
+
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String stdName = name.getText().toString();
+                String stdAddress = address.getText().toString();
+
+
+                // Create a new user with a first and last name
+                Map<String, Object> user = new HashMap<>();
+                user.put("name", stdName);
+                user.put("Address", stdAddress);
+
+
+// Add a new document with a generated ID
+                db.collection("users")
+                        .add(user)
+                        .addOnSuccessListener(new OnSuccessListener<DocumentReference>(){
+                            @Override
+                            public void onSuccess(DocumentReference documentReference) {
+                                Toast.makeText(MainActivity.this, "Success", Toast.LENGTH_SHORT).show();
+                            }
+                        })
+                        .addOnFailureListener(new OnFailureListener() {
+                            @Override
+                            public void onFailure(@NonNull Exception e) {
+                                Toast.makeText(MainActivity.this, "Fail", Toast.LENGTH_SHORT).show();
+                            }
+                        });
+
+//                Intent intent = new Intent(MainActivity.this, MainActivity3.class);
+//                startActivity(intent);
+
+            }
+        });
+
+    }
+}
+
+//main 2
+TextView usernameView, addressView;
+
+    FirebaseFirestore db = FirebaseFirestore.getInstance();
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        EdgeToEdge.enable(this);
+        setContentView(R.layout.activity_main3);
+        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
+            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
+            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
+            return insets;
+        });
+
+        usernameView = (TextView) findViewById(R.id.unameId);
+        addressView = (TextView)findViewById(R.id.addressId);
+        db.collection("users")
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if (task.isSuccessful()){
+                            for (QueryDocumentSnapshot document : task.getResult()){
+                                String uname = document.getString("name");
+                                String addve = document.getString("Address");
+
+                                usernameView.setText(uname);
+                                addressView.setText(addve);
+                                Toast.makeText(MainActivity3.this, "SuccessFull", Toast.LENGTH_SHORT).show();
+                            }
+                        }else {
+                            Toast.makeText(MainActivity3.this, "failed", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                });
+    }
+}
