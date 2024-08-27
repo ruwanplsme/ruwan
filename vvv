@@ -32,4 +32,403 @@ Color.MAGENTA, Color.BLACK, Color.BLUE, Color.TRANSPARENT, Color.DKGRAY};
  });
  }
 
-//
+
+
+
+
+//aler box
+username = (EditText) findViewById(R.id.usnTxtviewId);
+ password = (EditText) findViewById(R.id.pswTxtviewId);
+ submitTxt = (Button) findViewById(R.id.buttonId);
+ //resultTxt = (TextView) findViewById(R.id.outTxtviewId);
+ reset = (Button) findViewById(R.id.resetBtnId);
+ AlertDialog.Builder builder = new 
+AlertDialog.Builder(MainActivity.this);
+ submitTxt.setOnClickListener(new View.OnClickListener() {
+ @Override
+ public void onClick(View view) {
+ if (username.getText().toString().equals("kamal") && 
+password.getText().toString().equals("kamal123")){
+ //resultTxt.setText("Matched!");
+ builder.setMessage("UserName and Password is Correct! 
+Your are signed in..");
+ // Set Cancelable false for when the user clicks on the 
+outside the Dialog Box then it will remain show
+ builder.setCancelable(false);
+ // Set the Negative button with No name Lambda 
+OnClickListener method is use of DialogInterface interface.
+ builder.setNegativeButton("Ok", 
+(DialogInterface.OnClickListener) (dialog, which) -> {
+ // If user click no then dialog box is canceled.
+dialog.cancel();
+ });
+ // Create the Alert dialog
+AlertDialog alertDialog = builder.create();
+ // Show the Alert Dialog box
+alertDialog.show();
+ }
+ else {
+ //resultTxt.setText(("Not Matched"));
+ builder.setMessage("Username and Password is Incorrect! 
+Please try again..");
+ // Set Cancelable false for when the user clicks on the 
+outside the Dialog Box then it will remain show
+ builder.setCancelable(false);
+ // Set the Negative button with No name Lambda 
+OnClickListener method is use of DialogInterface interface.
+ builder.setNegativeButton("Ok", 
+(DialogInterface.OnClickListener) (dialog, which) -> {
+ // If user click no then dialog box is canceled.
+dialog.cancel();
+ });
+ // Create the Alert dialog
+AlertDialog alertDialog = builder.create();
+ // Show the Alert Dialog box
+alertDialog.show();
+ }
+ }
+ });
+ reset.setOnClickListener(new View.OnClickListener() {
+ @Override
+ public void onClick(View v) {
+ username.setText("");
+ password.setText("");
+ }
+ });
+
+
+
+
+
+//cal
+add = (Button) findViewById(R.id.addBtnId);
+ sub = (Button) findViewById(R.id.sbtBtnId);
+ div = (Button) findViewById(R.id.dvdBtnId);
+ mul = (Button) findViewById(R.id.mulBtnId);
+ value1 = (EditText) findViewById(R.id.val1Id);
+ value2 = (EditText) findViewById(R.id.val2Id);
+ output = (TextView) findViewById(R.id.outputId);
+ reset = (Button) findViewById(R.id.rstBtnId);
+ add.setOnClickListener(new View.OnClickListener() {
+ @Override
+ public void onClick(View view) {
+ int n1 = Integer.parseInt(value1.getText().toString());
+ int n2 = Integer.parseInt(value2.getText().toString());
+ int result = n1+n2;
+ output.setText(n1+" + "+n2+" = "+result);
+ }
+ });
+ sub.setOnClickListener(new View.OnClickListener() {
+ @Override
+ public void onClick(View view) {
+ int n1 = Integer.parseInt(value1.getText().toString());
+ int n2 = Integer.parseInt(value2.getText().toString());
+ int result = n1-n2;
+ output.setText(n1+" - "+n2+" = "+result);
+ }
+ });
+ div.setOnClickListener(new View.OnClickListener() {
+ @Override
+ public void onClick(View view) {
+ int n1 = Integer.parseInt(value1.getText().toString());
+ int n2 = Integer.parseInt(value2.getText().toString());
+ int result = n1/n2;
+ output.setText(n1+" / "+n2+" = "+result);
+ }
+ });
+ mul.setOnClickListener(new View.OnClickListener() {
+ @Override
+ public void onClick(View view) {
+ int n1 = Integer.parseInt(value1.getText().toString());
+ int n2 = Integer.parseInt(value2.getText().toString());
+ int result = n1*n2;
+ output.setText(n1+" * "+n2+" = "+result);
+ }
+ });
+ reset.setOnClickListener(new View.OnClickListener() {
+ @Override
+ public void onClick(View v) {
+ value1.setText("");
+ value2.setText("");
+ output.setText("");
+ }
+ });
+
+
+
+//cal-2 opertor first
+add = (Button) findViewById(R.id.addBtnId);
+ sub = (Button) findViewById(R.id.sbtBtnId);
+ div = (Button) findViewById(R.id.dvdBtnId);
+ mul = (Button) findViewById(R.id.mulBtnId);
+ equal = (Button) findViewById(R.id.eqlBtnId);
+ value1 = (EditText) findViewById(R.id.val1Id);
+ value2 = (EditText) findViewById(R.id.val2Id);
+ operator = (TextView) findViewById(R.id.operaterId);
+ output = (TextView) findViewById(R.id.outputId);
+ label01 = (TextView) findViewById(R.id.label1Id);
+ label02 = (TextView) findViewById(R.id.label2Id);
+ reset = (Button) findViewById(R.id.rstBtnId);
+ add.setOnClickListener(new View.OnClickListener() {
+ @Override
+ public void onClick(View view) {
+ operator.setText("+");
+ label01.setText("");
+ label02.setText("Enter two values to calculate");
+ equal.setOnClickListener(new View.OnClickListener() {
+ @Override
+public void onClick(View v) {
+ int n1 = 
+Integer.parseInt(value1.getText().toString());
+ int n2 = 
+Integer.parseInt(value2.getText().toString());
+ int result = n1+n2;
+output.setText(n1+" + "+n2+" = "+result);
+ }
+ });
+ }
+ });
+ sub.setOnClickListener(new View.OnClickListener() {
+ @Override
+ public void onClick(View view) {
+ operator.setText("-");
+ label01.setText("");
+ label02.setText("Enter two values to calculate");
+ equal.setOnClickListener(new View.OnClickListener() {
+ @Override
+public void onClick(View v) {
+ int n1 = 
+Integer.parseInt(value1.getText().toString());
+ int n2 = 
+Integer.parseInt(value2.getText().toString());
+ int result = n1-n2;
+ output.setText(n1+" - "+n2+" = "+result);
+ }
+ });
+ }
+ });
+ div.setOnClickListener(new View.OnClickListener() {
+ @Override
+ public void onClick(View view) {
+ operator.setText("/");
+ label01.setText("");
+ label02.setText("Enter two values to calculate");
+ equal.setOnClickListener(new View.OnClickListener() {
+ @Override
+public void onClick(View v) {
+ int n1 = 
+Integer.parseInt(value1.getText().toString());
+ int n2 = 
+Integer.parseInt(value2.getText().toString());
+ int result = n1/n2;
+output.setText(n1+" / "+n2+" = "+result);
+ }
+ });
+ }
+ });
+ mul.setOnClickListener(new View.OnClickListener() {
+ @Override
+ public void onClick(View view) {
+ operator.setText("*");
+ label01.setText("");
+ label02.setText("Enter two values to calculate");
+ equal.setOnClickListener(new View.OnClickListener() {
+ @Override
+public void onClick(View v) {
+ int n1 = 
+Integer.parseInt(value1.getText().toString());
+ int n2 = 
+Integer.parseInt(value2.getText().toString());
+ int result = n1*n2;
+output.setText(n1+" * "+n2+" = "+result);
+ }
+ });
+ }
+ });
+ reset.setOnClickListener(new View.OnClickListener() {
+ @Override
+ public void onClick(View v) {
+ value1.setText("");
+ value2.setText("");
+ operator.setText("");
+ output.setText("");
+ label02.setText("");
+ label01.setText("First, Enter the operation you want");
+ }
+ });
+
+
+//seekbar
+private SeekBar seekBar;
+ private TextView result;
+ @Override
+ protected void onCreate(Bundle savedInstanceState) {
+ super.onCreate(savedInstanceState);
+ setContentView(R.layout.activity_main);
+ seekBar = (SeekBar) findViewById(R.id.seekBarId);
+ result = (TextView) findViewById(R.id.resultViewId);
+ seekBar.setOnSeekBarChangeListener(new 
+SeekBar.OnSeekBarChangeListener() {
+ @Override
+ public void onProgressChanged(SeekBar seekBar, int progress, 
+boolean fromUser) {
+ result.setText("Marks: " + seekBar.getProgress());
+ result.setVisibility(View.VISIBLE);
+ }
+ @Override
+ public void onStartTrackingTouch(SeekBar seekBar) {
+ }
+ @Override
+ public void onStopTrackingTouch(SeekBar seekBar) {
+ }
+ });
+
+
+
+
+//seekbar  discount
+result = (TextView) findViewById(R.id.resultId);
+ amount = (EditText) findViewById(R.id.amountId);
+ seekBar = (SeekBar) findViewById(R.id.seekBarId);
+ discount = (TextView) findViewById(R.id.discountId);
+ seekBar.setOnSeekBarChangeListener(new 
+SeekBar.OnSeekBarChangeListener() {
+ @Override
+ public void onProgressChanged(SeekBar seekBar, int progress, 
+boolean fromUser) {
+ discount.setText(seekBar.getProgress() + "%");
+ Double userInput = 
+Double.parseDouble(amount.getText().toString());
+ Double val = userInput -
+((userInput*seekBar.getProgress())/100);
+ result.setText(Double.toString(val));
+ if(seekBar.getProgress() > 75){
+ discount.setTextColor(Color.RED);
+ discount.setText("75%");
+ Double val1 = userInput - ((userInput*75)/100);
+ result.setText("" + val1);
+ }
+ else{
+ discount.setTextColor(Color.BLACK);
+ }
+ }
+ @Override
+ public void onStartTrackingTouch(SeekBar seekBar) {
+ }
+ @Override
+ public void onStopTrackingTouch(SeekBar seekBar) {
+ }
+ });
+
+
+
+//discount 2 seekbar
+
+name = (EditText) findViewById(R.id.nameId);
+ age = (EditText) findViewById(R.id.ageId);
+ amount = (EditText) findViewById(R.id.amountId);
+ checkBox = (CheckBox) findViewById(R.id.checkBoxId);
+ seekBar = (SeekBar) findViewById(R.id.seekBarId);
+ button = (Button) findViewById(R.id.btnId);
+ result = (TextView) findViewById(R.id.resultId);
+ discountView = (TextView) findViewById(R.id.discounViewId);
+ seniorJuniorView = (TextView) findViewById(R.id.SJViewId);
+ button.setOnClickListener(new View.OnClickListener() {
+ @Override
+ public void onClick(View view) {
+ String nameInput = name.getText().toString();
+ Integer ageIn = Integer.parseInt(age.getText().toString());
+ Integer amountInput = 
+Integer.parseInt(amount.getText().toString());
+ if(ageIn > 40){
+ Integer val = amountInput - ((amountInput * 40)/100);
+ result.setText(Integer.toString(val));
+ discountView.setText("Discount : 40%");
+ seniorJuniorView.setText("Senior Citizen");
+ }else{
+ Integer val = amountInput - ((amountInput * 25)/100);
+ result.setText(Integer.toString(val));
+ discountView.setText("Discount : 25%");
+ seniorJuniorView.setText("Junior Citizen");
+ }
+ }
+ });
+ checkBox.setOnCheckedChangeListener(new 
+CompoundButton.OnCheckedChangeListener() {
+ @Override
+ public void onCheckedChanged(CompoundButton buttonView, boolean 
+isChecked) {
+ if(isChecked) {
+ seekBar.setVisibility(View.VISIBLE);
+ }else{
+ seekBar.setVisibility(View.INVISIBLE);
+ }
+ seekBar.setOnSeekBarChangeListener(new 
+SeekBar.OnSeekBarChangeListener() {
+ @Override
+public void onProgressChanged(SeekBar seekBar, int 
+progress, boolean fromUser) {
+ Double input = 
+Double.parseDouble(amount.getText().toString());
+ if(input > 40){
+ discountView.setText("Discount : 
+"+seekBar.getProgress()+"%");
+ Double val = input -
+((input*seekBar.getProgress())/100);
+ //seekBar.setProgress(40);
+result.setText(Double.toString(val));
+ seniorJuniorView.setText("");
+ }else{
+ discountView.setText("Discount : 
+"+seekBar.getProgress()+"%");
+ //seekBar.setProgress(25);
+Double val = input -
+((input*seekBar.getProgress())/100);
+ result.setText(Double.toString(val));
+ seniorJuniorView.setText("");
+ }
+ }
+ @Override
+public void onStartTrackingTouch(SeekBar seekBar) {
+ }
+ @Override
+public void onStopTrackingTouch(SeekBar seekBar) {
+ }
+ });
+ }
+ });
+
+
+//data show in form
+fname = (EditText) findViewById(R.id.fnameId);
+ lname = (EditText) findViewById(R.id.lnameId);
+ age = (EditText) findViewById(R.id.ageId);
+ uname = (EditText) findViewById(R.id.unameId);
+ password = (EditText) findViewById(R.id.passwordId);
+ email = (EditText) findViewById(R.id.emailId);
+ registerBtn = (Button) findViewById(R.id.regBtnId);
+ result01 = (TextView) findViewById(R.id.result1);
+ result02 = (TextView) findViewById(R.id.result2);
+ result03 = (TextView) findViewById(R.id.result3);
+ result04 = (TextView) findViewById(R.id.result4);
+ result05 = (TextView) findViewById(R.id.result5);
+ result06 = (TextView) findViewById(R.id.result6);
+ registerBtn.setOnClickListener(new View.OnClickListener() {
+ @Override
+ public void onClick(View v) {
+ String inputFname = fname.getText().toString();
+ String inputLname = lname.getText().toString();
+ String inputAge = age.getText().toString();
+ String inputUname = uname.getText().toString();
+ String inputpass = password.getText().toString();
+ String inputEmail = email.getText().toString();
+ result01.setText("Firstname: "+inputFname);
+ result02.setText("Lastname: "+inputLname);
+ result03.setText("Age: "+inputAge);
+ result03.setText("Username: "+inputUname);
+ result04.setText("Password: "+inputpass);
+ result05.setText("Email: "+inputEmail);
+ }
+ });
+
+
